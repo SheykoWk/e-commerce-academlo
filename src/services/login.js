@@ -6,3 +6,8 @@ export const loginUser = async (data) => {
     const req = await axios.post(`${URL}/login/`, data)
     return req.data
 }
+
+export const createUser = async (data) => {
+    const req = await axios.post(`${URL}/login/`, data)
+    return req.data
+}

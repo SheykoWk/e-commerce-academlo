@@ -1,12 +1,29 @@
-import { useForm } from 'react-hook-form'
+import { useEffect, useState } from 'react'
+import { set, useForm } from 'react-hook-form'
+import { loginUser } from '../services/login'
+
+
 
 const Login = () => {
 
     const {handleSubmit, register} = useForm( )
 
+    const [userObj, setUserObj] = useState({})
+
     const onSubmit = (data) => {
         console.log(data)
+        setUserObj(data)
     }
+
+    useEffect(() => {
+        if(userObj.email){
+            loginUser(userObj)
+                .then((res) => {
+                    console.log(res)
+                })
+        }
+    }, [userObj])
+
 
     return (
         <div>
