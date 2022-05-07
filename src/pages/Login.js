@@ -12,9 +12,9 @@ const Login = () => {
         <div>
             <form onSubmit={handleSubmit(onSubmit)}  >
                 <label htmlFor='email'>Email</label>
-                <input id='email' placeholder='example@example.com' type='email' />
+                <input id='email' placeholder='example@example.com' type='email' {...register('email')} />
                 <label htmlFor='password'>Password</label>
-                <input id='password' placeholder='Your password' type='password' />
+                <input id='password' placeholder='Your password' type='password' {...register('password')} />
                 <input type='submit' />
             </form>
         </div>

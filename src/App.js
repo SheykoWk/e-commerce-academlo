@@ -1,13 +1,14 @@
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
+import Login from './pages/Login';
 
 function App() {
   return (
     <div className="App">
       <Routes>
         {/*Rutas Publicas*/}
-        <Route path='/login' />
-        <Route path='/signup' />
+        <Route path='/login' element={<Login />} />
+        <Route path='/signup'  />
         {/*Rutas Privadas*/}
         <Route>
           <Route path='/' />
