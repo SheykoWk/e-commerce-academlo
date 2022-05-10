@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react'
-import { set, useForm } from 'react-hook-form'
-import { loginUser } from '../services/login'
+import { useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
+import { loginUser } from '../services'
 
 
 
 const Login = () => {
 
     const {handleSubmit, register} = useForm( )
-
+    const navigate = useNavigate()
     const [userObj, setUserObj] = useState({})
 
     const onSubmit = (data) => {
@@ -19,7 +20,10 @@ const Login = () => {
         if(userObj.email){
             loginUser(userObj)
                 .then((res) => {
-                    console.log(res)
+                    localStorage.setItem("token", res.access)
+                })
+                .then(() => {
+                    navigate('/shop')
                 })
         }
     }, [userObj])

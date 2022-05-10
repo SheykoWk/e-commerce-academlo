@@ -1,6 +1,7 @@
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
 import Login from './pages/Login';
+import Shop from './pages/Shop';
 
 function App() {
   return (
@@ -12,7 +13,7 @@ function App() {
         {/*Rutas Privadas*/}
         <Route>
           <Route path='/' />
-          <Route path='/shop' />
+          <Route path='/shop' element={<Shop />} />
           <Route path='/shop/:id' />
           <Route path='/cart' />
         </Route>
