@@ -3,8 +3,9 @@ export const actions =  {
 }
 // dispatch({type: "@product/setAll", payload: data})
 
-export const productSetAll = () => ({
-    type : actions.productSetAll
+export const productSetAll = (data) => ({
+    type : actions.productSetAll,
+    payload: data
 })
 // dispatch(productSetAll())
 
