@@ -12,6 +12,8 @@ const Shop = () => {
         dispatch(setProductThunk())
     }, [dispatch])
 
+
+
     const productArr = useSelector(state => state.products)
 
     const list = productArr.map((item) => <ProductItem key={item.id} prodObj={item} />)
