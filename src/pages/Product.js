@@ -8,29 +8,17 @@ const Product = () => {
   const dispatch = useDispatch();
   const product = useSelector((state) => state.productInfo);
 
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [imageArr, setImageArr] = useState()
 
   useEffect(() => {
-    console.log("se hizo la peticion al id", id);
     dispatch(setInfoProductThunk(id));
-    setIsLoaded(true)
   }, [dispatch, id]);
 
-  const images = product.images
-
-  // console.log(id)
-  // console.log(product.images)
-  //    console.log(product.images[0].url)
+ 
   return (
     <div>
-      {isLoaded ? (
-        <>
-          <h1>{product.name}</h1>
+        <h1>{product.name}</h1>
           <p>{product.description}</p>
-          {product.images?.map((item) => <img src={item.url} alt='' key={item.url} />)}
-        </>
-      ) : null}
+          {product.images?.map((item) => <img src={item.url} alt='' key={item.id} />)}
     </div>
   );
 };
