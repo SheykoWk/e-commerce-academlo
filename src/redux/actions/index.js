@@ -1,21 +1,22 @@
 import axios from "axios"
-import { getProducts } from "../../services"
+import { getProductById, getProducts } from "../../services"
 
 export const actions =  {
-    productSetAll : "@product/setAll"
+    productSetAll : "@product/setAll",
+    productInfoSetById: "@productInfo/setById"
 }
-// dispatch({type: "@product/setAll", payload: data})
 
-/*  
-! 1.Ejecutamos el dispatch (el dispatch actualiza nuestro estado global)
-? dispatch({type: "@product/setAll", payload: data})
-
-! 2.Utilizando un middleware, vamos a manipular la informacion que vamos a setear en nuestro payload
-*/
-
+//! const dispatch = useDispatch()
+//? dispatch({type: "@product/setAll", payload: data})
+//* dispatch(productSetAll(data))
 
 export const productSetAll = (data) => ({
     type : actions.productSetAll,
+    payload: data
+})
+
+export const setProductInfo = (data) => ({
+    type: actions.productInfoSetById,
     payload: data
 })
 
@@ -28,6 +29,19 @@ export const setProductThunk = () => {
     }
 }
 
+//! const dispatch = useDispatch()
+//? dispatch({type: "@product/setAll", payload: data})
+//* dispatch(setProductThunk())
 
-// dispatch(productSetAll())
-// dispatch(productSetById(data))
+export const setInfoProductThunk = (id) => {
+    return (dispatch) => {
+        getProductById(id)
+            .then((res) => {
+                dispatch(setProductInfo(res))
+            })
+    }
+}
+
+//! const dispatch = useDispatch()
+//? dispatch({type: "@product/setAll", payload: data})
+//* dispatch(setInfoProductThunk(id))
