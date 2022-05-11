@@ -1,9 +1,10 @@
 import axios from "axios"
-import { getProductById, getProducts } from "../../services"
+import { getFilterCategories, getProductById, getProducts } from "../../services"
 
 export const actions =  {
     productSetAll : "@product/setAll",
-    productInfoSetById: "@productInfo/setById"
+    productInfoSetById: "@productInfo/setById",
+    categoriesSetValues: " @categories/setValues"
 }
 
 //! const dispatch = useDispatch()
@@ -17,6 +18,11 @@ export const productSetAll = (data) => ({
 
 export const setProductInfo = (data) => ({
     type: actions.productInfoSetById,
+    payload: data
+})
+
+export const setCategories = (data) => ({
+    type: actions.categoriesSetValues,
     payload: data
 })
 
@@ -45,3 +51,12 @@ export const setInfoProductThunk = (id) => {
 //! const dispatch = useDispatch()
 //? dispatch({type: "@product/setAll", payload: data})
 //* dispatch(setInfoProductThunk(id))
+
+export const setCategoriesThunk = () => {
+    return (dispatch) => {
+        getFilterCategories()
+            .then((res) => {
+                dispatch(setCategories(res))
+            })
+    }
+}

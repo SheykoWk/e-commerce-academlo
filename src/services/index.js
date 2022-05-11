@@ -28,3 +28,7 @@ export const getProductById = async (id) => {
     return req.data
 }
 
+export const getFilterCategories = async () => {
+    const req = await axios.get(`${URL}/categories/`, getConfig())
+    return req.data
+}

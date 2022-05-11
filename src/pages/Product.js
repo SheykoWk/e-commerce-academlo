@@ -17,8 +17,8 @@ const Product = () => {
   return (
     <div>
         <h1>{product.name}</h1>
-          <p>{product.description}</p>
-          {product.images?.map((item) => <img src={item.url} alt='' key={item.id} />)}
+        <p>{product.description}</p>
+        {product.images?.map((item) => <img src={item.url} alt='' key={item.id} />)}
     </div>
   );
 };
