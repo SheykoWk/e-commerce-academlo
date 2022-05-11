@@ -34,7 +34,7 @@ export const setProductThunk = () => {
 //* dispatch(setProductThunk())
 
 export const setInfoProductThunk = (id) => {
-    return (dispatch) => {
+    return dispatch => {
         getProductById(id)
             .then((res) => {
                 dispatch(setProductInfo(res))
