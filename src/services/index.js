@@ -43,3 +43,7 @@ export const addProductToCart = async (data) => {
     return req.data
 } 
 
+export const getProductsFromCart = async () => {
+    const req = await axios.get(`${URL}/cart/`, getConfig());
+    return req.data
+}

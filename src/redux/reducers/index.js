@@ -3,7 +3,8 @@ import { actions } from "../actions";
 const INITIAL_STATE = {
     products: [],
     productInfo: {},
-    categories: []
+    categories: [],
+    cart: []
 }
 
 export const rootReducer = (state = INITIAL_STATE, action) => {
@@ -22,6 +23,11 @@ export const rootReducer = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 categories: action.payload
+            }
+        case actions.cartSetProducts:
+            return {
+                ...state,
+                cart: action.payload
             }
         default:
             return state;

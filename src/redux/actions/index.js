@@ -1,10 +1,11 @@
 import axios from "axios"
-import { getFilterCategories, getFilterProducts, getProductById, getProducts } from "../../services"
+import { getFilterCategories, getFilterProducts, getProductById, getProducts, getProductsFromCart } from "../../services"
 
 export const actions =  {
     productSetAll : "@product/setAll",
     productInfoSetById: "@productInfo/setById",
-    categoriesSetValues: " @categories/setValues"
+    categoriesSetValues: " @categories/setValues",
+    cartSetProducts: "@cart/setProducts"
 }
 
 //! const dispatch = useDispatch()
@@ -23,6 +24,11 @@ export const setProductInfo = (data) => ({
 
 export const setCategories = (data) => ({
     type: actions.categoriesSetValues,
+    payload: data
+})
+
+export const setProductsToCart = (data) => ({
+    type: actions.cartSetProducts,
     payload: data
 })
 
@@ -68,3 +74,11 @@ export const setCategoriesThunk = () => {
     }
 }
 
+export const setCartProductsThunk = () => {
+    return (dispatch) => {
+        getProductsFromCart()
+            .then((res) => {
+                dispatch(setProductsToCart(res))
+            })
+    }
+}
