@@ -37,3 +37,9 @@ export const getFilterProducts = async (id) => {
     const req = await axios.get(`${URL}/products/?category=${id}`, getConfig())
     return req.data
 }
+
+export const addProductToCart = async (data) => {
+    const req = await axios.post(`${URL}/products/add_to_cart/`, data, getConfig());
+    return req.data
+} 
+
