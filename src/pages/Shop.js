@@ -9,14 +9,16 @@ const Shop = () => {
     const productArr = useSelector(state => state.products)
     const categoriesArr = useSelector(state => state.categories)
 
+    const [currentCategory, setCurrentCategory] = useState('')
+
     useEffect(() => {
-        dispatch(setProductThunk())
+        dispatch(setProductThunk(currentCategory))
         dispatch(setCategoriesThunk())
-    }, [dispatch])
+    }, [dispatch, currentCategory])
 
 
     const list = productArr.map((item) => <ProductItem key={item.id} prodObj={item} />)
-    const categoriesList = categoriesArr.map(item => <button key={item.id}>{item.name}</button>) 
+    const categoriesList = categoriesArr.map(item => <button key={item.id} onClick={() => setCurrentCategory(item.id)} >{item.name}</button>) 
 
     return (
         <div>

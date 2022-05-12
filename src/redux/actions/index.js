@@ -1,5 +1,5 @@
 import axios from "axios"
-import { getFilterCategories, getProductById, getProducts } from "../../services"
+import { getFilterCategories, getFilterProducts, getProductById, getProducts } from "../../services"
 
 export const actions =  {
     productSetAll : "@product/setAll",
@@ -26,12 +26,19 @@ export const setCategories = (data) => ({
     payload: data
 })
 
-export const setProductThunk = () => {
+export const setProductThunk = (category) => {
     return (dispatch) => {
-        getProducts()
-            .then((res) => {
-                dispatch(productSetAll(res))
-            })
+        if(category){
+            getFilterProducts(category)
+                .then((res) => {
+                    dispatch(productSetAll(res))
+                })
+        } else {
+            getProducts()
+                .then((res) => {
+                    dispatch(productSetAll(res))
+                })
+        }
     }
 }
 
