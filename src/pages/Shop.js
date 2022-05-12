@@ -23,6 +23,9 @@ const Shop = () => {
     return (
         <div>
             <h1>Esta es mi tienda</h1>
+            <button onClick={() => setCurrentCategory('')} >
+                All Products
+            </button>
             {categoriesList}
             {list}
         </div>
