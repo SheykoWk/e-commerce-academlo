@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { setInfoProductThunk } from "../redux/actions";
+import { setInfoProductThunk, setProductThunk } from "../redux/actions";
 import { addProductToCart } from "../services";
 
 const Product = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const product = useSelector((state) => state.productInfo);
+  const filterProducts = useSelector(state => state.products)
 
   const [quantity, setQuantity] = useState(0)
   const [confirm, setConfirm] = useState(false)
@@ -29,6 +30,12 @@ const Product = () => {
     }
   }, [quantity, confirm, id])
 
+  useEffect(() => {
+    if(product.category){
+      dispatch(setProductThunk(product.category.id))
+    }
+    console.log(product)
+  }, [dispatch, product])
 
   const decrement = () => {
     if(quantity > 0){
@@ -47,7 +54,14 @@ const Product = () => {
           <button onClick={() => setConfirm(true)} >Add To Cart</button>
         </div>
         <p>{product.description}</p>
-        {product.images?.map((item) => <img src={item.url} alt='' key={item.id} />)}
+        {product.images?.map((item) => <img src={item.url}  width='200px' alt='' key={item.id} />)}
+        <h2>Productos Relacionados</h2>
+        { filterProducts.map(product => (
+          <div key={product.name} >
+            <h3>{product.name}</h3>
+            <img width='200px' src={product.images[0].url} alt="" />
+          </div>
+        )) }
     </div>
   );
 };
