@@ -12,6 +12,7 @@ const Product = () => {
 
   const [quantity, setQuantity] = useState(0)
   const [confirm, setConfirm] = useState(false)
+  const [filtProd, setFiltProd] = useState([])
 
   useEffect(() => {
     dispatch(setInfoProductThunk(id));
@@ -42,6 +43,8 @@ const Product = () => {
       setQuantity(quantity - 1)
     }
   }
+
+
  
   return (
     <div>
@@ -56,7 +59,7 @@ const Product = () => {
         <p>{product.description}</p>
         {product.images?.map((item) => <img src={item.url}  width='200px' alt='' key={item.id} />)}
         <h2>Productos Relacionados</h2>
-        { filterProducts.map(product => (
+        { filtProd.map(product => (
           <div key={product.name} >
             <h3>{product.name}</h3>
             <img width='200px' src={product.images[0].url} alt="" />
