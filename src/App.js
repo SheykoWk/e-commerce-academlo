@@ -7,6 +7,9 @@ import ProtectedPages from './pages/ProtectedPages';
 import Cart from './pages/Cart';
 
 function App() {
+
+
+  
   return (
     <div className="App">
       <Routes>
