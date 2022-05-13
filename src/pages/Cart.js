@@ -37,8 +37,6 @@ const Cart = () => {
     return <CartProduct key={item.id} prodObj={item} />;
   });
 
-  
-
   return (
     <div>
       <h1>Cart</h1>

@@ -39,11 +39,15 @@ const Product = () => {
   }, [dispatch, product])
 
   const decrement = () => {
+    setConfirm(false)
     if(quantity > 0){
       setQuantity(quantity - 1)
     }
   }
-
+  const increment = () => {
+    setConfirm(false)
+    setQuantity(quantity + 1)
+  }
 
  
   return (
@@ -52,15 +56,15 @@ const Product = () => {
         <div>
           <button onClick={decrement}>-</button>
           {quantity}
-          <button onClick={() => setQuantity(quantity + 1)} >+</button>
+          <button onClick={increment} >+</button>
           <br/>
           <button onClick={() => setConfirm(true)} >Add To Cart</button>
         </div>
         <p>{product.description}</p>
         {product.images?.map((item) => <img src={item.url}  width='200px' alt='' key={item.id} />)}
         <h2>Productos Relacionados</h2>
-        { filtProd.map(product => (
-          <div key={product.name} >
+        { filterProducts.map(product => (
+          <div key={product.id} >
             <h3>{product.name}</h3>
             <img width='200px' src={product.images[0].url} alt="" />
           </div>
